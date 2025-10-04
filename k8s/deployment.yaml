@@ -15,14 +15,14 @@ spec:
     spec:
       containers:
         - name: a-service
-          image: 5jun99/a-service:initial   # A 서비스 이미지
+          image: 5jun99/a-service:lastest   # A 서비스 이미지
           ports:
             - containerPort: 8080
           readinessProbe:
             httpGet:
               path: /
               port: 8080
-            initialDelaySeconds: 15   # 앱 초기화 여유
+            lastestDelaySeconds: 15   # 앱 초기화 여유
             periodSeconds: 5
             timeoutSeconds: 2
             failureThreshold: 3
@@ -58,14 +58,14 @@ spec:
     spec:
       containers:
         - name: b-service
-          image: 5jun99/b-service:initial   # B 서비스 이미지
+          image: 5jun99/b-service:lastest   # B 서비스 이미지
           ports:
             - containerPort: 8080
           readinessProbe:
             httpGet:
               path: /
               port: 8080
-            initialDelaySeconds: 15
+            lastestDelaySeconds: 15
             periodSeconds: 5
             timeoutSeconds: 2
             failureThreshold: 3
@@ -100,14 +100,14 @@ spec:
     spec:
       containers:
         - name: c-service
-          image: 5jun99/c-service:initial   # C 서비스 이미지
+          image: 5jun99/c-service:lastest   # C 서비스 이미지
           ports:
             - containerPort: 8080
           readinessProbe:
             httpGet:
               path: /
               port: 8080
-            initialDelaySeconds: 15
+            lastestDelaySeconds: 15
             periodSeconds: 5
             timeoutSeconds: 2
             failureThreshold: 3
