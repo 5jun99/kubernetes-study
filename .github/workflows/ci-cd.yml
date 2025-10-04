@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        service: [Aservice, Bservice, Cservice] # 서비스 3개
+        service: [a-service, b-service, c-service] # 서비스 3개
     env:
       IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.service }}:${{ github.sha }}
 
