@@ -11,7 +11,7 @@ jobs:
       matrix:
         service: [a-service, b-service, c-service] # 서비스 3개
     env:
-      IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.service }}:${{ github.sha }}
+      IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.service }}:lastest
 
     steps:
       - uses: actions/checkout@v4
