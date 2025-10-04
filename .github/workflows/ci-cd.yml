@@ -1,15 +1,18 @@
-name: Build and Deploy
+name: Build and Deploy Services
 
 on:
   push:
     branches: [main]
 
-env:
-  IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/sample-app:${{ github.sha }}
-
 jobs:
-  build-and-push:
+  build-and-deploy:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service: [Aservice, Bservice, Cservice] # 서비스 3개
+    env:
+      IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.service }}:${{ github.sha }}
+
     steps:
       - uses: actions/checkout@v4
 
@@ -28,6 +31,7 @@ jobs:
       - name: Build and push image
         uses: docker/build-push-action@v4
         with:
+          context: ./${{ matrix.service }} # 각 서비스 폴더
           push: true
           tags: ${{ env.IMAGE }}
 
@@ -43,4 +47,5 @@ jobs:
 
       - name: Update deployment image
         run: |
-          kubectl set image deployment/sample-app sample-app=${{ env.IMAGE }} --record
+          kubectl set image deployment/${{ matrix.service }} \
+            ${{ matrix.service }}=${{ env.IMAGE }} --record
