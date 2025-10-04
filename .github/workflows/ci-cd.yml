@@ -11,7 +11,7 @@ jobs:
       matrix:
         service: [a-service, b-service, c-service] # 서비스 3개
     env:
-      IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.service }}:lastest
+      IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.service }}:latest
 
     steps:
       - uses: actions/checkout@v4
@@ -31,7 +31,7 @@ jobs:
       - name: Build and push image
         uses: docker/build-push-action@v4
         with:
-          context: ./${{ matrix.service }} # 각 서비스 폴더
+          context: ./${{ matrix.service }}
           push: true
           tags: ${{ env.IMAGE }}
 

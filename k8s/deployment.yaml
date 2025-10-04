@@ -15,7 +15,8 @@ spec:
     spec:
       containers:
         - name: a-service
-          image: 5jun99/a-service:lastest
+          image: 5jun99/a-service:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           readinessProbe:
@@ -58,7 +59,8 @@ spec:
     spec:
       containers:
         - name: b-service
-          image: 5jun99/b-service:lastest
+          image: 5jun99/b-service:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           readinessProbe:
@@ -100,7 +102,8 @@ spec:
     spec:
       containers:
         - name: c-service
-          image: 5jun99/c-service:lastest
+          image: 5jun99/c-service:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           readinessProbe:
