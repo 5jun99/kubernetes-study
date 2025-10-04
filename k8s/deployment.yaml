@@ -23,7 +23,7 @@ spec:
             httpGet:
               path: /
               port: 8080
-            initialDelaySeconds: 60
+            initialDelaySeconds: 10
             periodSeconds: 5
             timeoutSeconds: 2
             failureThreshold: 3
@@ -38,7 +38,7 @@ spec:
   selector:
     app: a-service
   ports:
-    - port: 80
+    - port: 8080
       targetPort: 8080
       nodePort: 30081
 
@@ -67,7 +67,7 @@ spec:
             httpGet:
               path: /
               port: 8080
-            initialDelaySeconds: 60
+            initialDelaySeconds: 10
             periodSeconds: 5
             timeoutSeconds: 2
             failureThreshold: 3
@@ -82,7 +82,7 @@ spec:
   selector:
     app: b-service
   ports:
-    - port: 80
+    - port: 8080
       targetPort: 8080
 
 # ===================== C Service =====================
@@ -110,7 +110,7 @@ spec:
             httpGet:
               path: /
               port: 8080
-            initialDelaySeconds: 60
+            initialDelaySeconds: 10
             periodSeconds: 5
             timeoutSeconds: 2
             failureThreshold: 3
@@ -125,5 +125,5 @@ spec:
   selector:
     app: c-service
   ports:
-    - port: 80
+    - port: 8080
       targetPort: 8080

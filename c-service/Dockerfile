@@ -5,4 +5,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY Cservice.py .
 ENV PORT=8080
 EXPOSE 8080
-CMD ["python", "Cservice.py"]
+CMD ["gunicorn", "-w", "4", "-k", "uvicorn.workers.UvicornWorker", "-b", "0.0.0.0:8080", "Cservice:app"]

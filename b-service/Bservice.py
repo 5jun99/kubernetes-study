@@ -1,17 +1,14 @@
 # service_b.py
-from flask import Flask
-import requests
+from fastapi import FastAPI
+import httpx
 
-app = Flask(__name__)
+app = FastAPI()
 
-@app.route("/")
-def hello():
-    # Service C 호출
+@app.get("/")
+async def read_root():
     try:
-        r = requests.get("http://c-service:8080/")
-        return f"Hello from Service B! C says: {r.text}\n"
+        async with httpx.AsyncClient() as client:
+            r = await client.get("http://c-service:8080/")
+        return {"message": f"Hello from Service B! C says: {r.text}"}
     except:
-        return "Hello from Service B! C unreachable\n"
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080)
+        return {"message": "Hello from Service B! C unreachable"}

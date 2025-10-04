@@ -1,11 +1,8 @@
 # service_c.py
-from flask import Flask
+from fastapi import FastAPI
 
-app = Flask(__name__)
+app = FastAPI()
 
-@app.route("/")
-def hello():
-    return "Hello from Service C!\n"
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080)
+@app.get("/")
+async def read_root():
+    return {"message": "Hello from Service C!"}
