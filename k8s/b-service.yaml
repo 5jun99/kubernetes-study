@@ -1,0 +1,42 @@
+# ===================== B Service =====================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: b-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: b-service
+  template:
+    metadata:
+      labels:
+        app: b-service
+    spec:
+      containers:
+        - name: b-service
+          image: 5jun99/b-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 3
+            successThreshold: 1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: b-service
+spec:
+  type: ClusterIP
+  selector:
+    app: b-service
+  ports:
+    - port: 80
+      targetPort: 8080
