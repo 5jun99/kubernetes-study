@@ -15,14 +15,14 @@ spec:
     spec:
       containers:
         - name: a-service
-          image: 5jun99/a-service:lastest   # A 서비스 이미지
+          image: 5jun99/a-service:lastest
           ports:
             - containerPort: 8080
           readinessProbe:
             httpGet:
               path: /
               port: 8080
-            lastestDelaySeconds: 15   # 앱 초기화 여유
+            initialDelaySeconds: 15
             periodSeconds: 5
             timeoutSeconds: 2
             failureThreshold: 3
@@ -33,7 +33,7 @@ kind: Service
 metadata:
   name: a-service
 spec:
-  type: NodePort   # 외부에서 접근 가능
+  type: NodePort
   selector:
     app: a-service
   ports:
@@ -58,14 +58,14 @@ spec:
     spec:
       containers:
         - name: b-service
-          image: 5jun99/b-service:lastest   # B 서비스 이미지
+          image: 5jun99/b-service:lastest
           ports:
             - containerPort: 8080
           readinessProbe:
             httpGet:
               path: /
               port: 8080
-            lastestDelaySeconds: 15
+            initialDelaySeconds: 15
             periodSeconds: 5
             timeoutSeconds: 2
             failureThreshold: 3
@@ -76,7 +76,7 @@ kind: Service
 metadata:
   name: b-service
 spec:
-  type: ClusterIP   # 내부 통신 전용
+  type: ClusterIP
   selector:
     app: b-service
   ports:
@@ -100,14 +100,14 @@ spec:
     spec:
       containers:
         - name: c-service
-          image: 5jun99/c-service:lastest   # C 서비스 이미지
+          image: 5jun99/c-service:lastest
           ports:
             - containerPort: 8080
           readinessProbe:
             httpGet:
               path: /
               port: 8080
-            lastestDelaySeconds: 15
+            initialDelaySeconds: 15
             periodSeconds: 5
             timeoutSeconds: 2
             failureThreshold: 3
@@ -118,7 +118,7 @@ kind: Service
 metadata:
   name: c-service
 spec:
-  type: ClusterIP   # 내부 통신 전용
+  type: ClusterIP
   selector:
     app: c-service
   ports:
